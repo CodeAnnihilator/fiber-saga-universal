@@ -1,0 +1,25 @@
+{
+  "presets": ["react", "env", "stage-0"],
+  "plugins": [
+    "transform-runtime",
+    "add-module-exports"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        ["typecheck", {
+          "disable": {
+            "production": true
+          }
+        }],
+        ["react-transform", {
+          "transforms": [{
+              "transform": "react-transform-catch-errors",
+              "imports": ["react", "redbox-react"]
+            }
+          ]
+        }]
+      ]
+    }
+  }
+}
