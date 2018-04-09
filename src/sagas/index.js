@@ -1,3 +1,9 @@
+import { all, fork } from 'redux-saga/effects'
+
+import watchTestSaga from './watchTestSaga.js'
+
 export default function* root() {
-  console.log('saga')
+  yield all([
+    fork(watchTestSaga),
+  ])
 }

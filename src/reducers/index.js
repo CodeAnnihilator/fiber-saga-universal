@@ -1,26 +1,20 @@
 import { combineReducers } from 'redux'
+import typeToReducer from 'type-to-reducer'
+import { REQUEST_USER_SUCCESS } from '../actions/userActions.js'
 
-function todos(state = [], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return state.concat([action.text])
-    default:
-      return state
-  }
+const initialState = {
+  user: null,
+  isPending: false,
+  error: false
 }
 
-function counter(state = 0, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
-    default:
-      return state
-  }
-}
+const userReducer = typeToReducer({
+  [REQUEST_USER_SUCCESS]: (state, action) => ({
+    ...state,
+    user: action.payload
+  })
+}, initialState)
 
 export default combineReducers({
-  todos,
-  counter
+  userReducer
 })

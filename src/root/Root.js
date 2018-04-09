@@ -8,13 +8,11 @@ export default class Root extends Component {
     const { store, history, routes, type, renderProps, url } = this.props
     return (
       <Provider store={store}>
-        <div>
-          {
-            type === 'server'
-              ? <StaticRouter location={url} context={{}}>{routes}</StaticRouter>
-              : <Router>{routes}</Router>
-          }
-        </div>
+        {
+          type === 'server'
+            ? <StaticRouter location={url} context={{}}>{routes}</StaticRouter>
+            : <Router>{routes}</Router>
+        }
       </Provider>
     )
   }
